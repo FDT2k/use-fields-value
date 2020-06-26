@@ -1,11 +1,19 @@
 import React from 'react'
-import { useMyHook } from 'use-fields-value'
+import useFieldsValue  from '@geekagency/use-fields-value'
 
 const App = () => {
-  const example = useMyHook()
+  const {values, inputProps,handleChange} = useFieldsValue({field:'hello world'})
   return (
     <div>
-      {example}
+      <div>
+        {values.field}<br/>
+        <input type="text" name="field" onChange={handleChange} value={values.field}/>
+      </div>
+
+      <div>
+        {values.field}<br/>
+        <input type="text" name="field" {...inputProps('field')}/>
+      </div>
     </div>
   )
 }

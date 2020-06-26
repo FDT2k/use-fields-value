@@ -1,5 +1,5 @@
 {
-  "name": "use-fields-value",
+  "name": "@geekagency/use-fields-value",
   "version": "1.0.0",
   "description": "Hook for form input values",
   "author": "FDT2k",

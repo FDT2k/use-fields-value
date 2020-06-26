@@ -1,21 +1,28 @@
-import * as React from 'react'
+import React, { useState, useMemo, useCallback } from "react";
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState({
-    counter: 0
-  })
-
-  React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval)
+export default (initialState = {}, prop = 'name') => {
+  const [values, setValues] = useState(initialState);
+  const handleChange = useMemo(() => (event) => {
+    if (typeof (event.target[prop]) === 'undefined') {
+      throw new Error(`[useFieldValue] prop ${prop}  not present on target`)
     }
-  }, [])
+    const newState = {
+      ...values,
+      [event.target[prop]]: event.target.value
+    }
+    setValues(newState);
+    return newState;
+  }, []);
 
-  return counter
+  const replaceValues = useCallback((values) => setValues(values), [])
+
+  return {
+    values,
+    handleChange,
+    replaceValues,
+    inputProps: prop => ({
+      onChange: handleChange,
+      value: values[prop]
+    })
+  };
 }
