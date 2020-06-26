@@ -12,18 +12,7 @@ npm install --save use-fields-value
 
 ## Usage
 
-```jsx
-import React, { Component } from 'react'
-
-import { useMyHook } from 'use-fields-value'
-
-const Example = () => {
-  const example = useMyHook()
-  return (
-    <div>{example}</div>
-  )
-}
-```
+  see [example](example)
 
 ## License
 
