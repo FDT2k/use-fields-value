@@ -209,6 +209,10 @@ var useFieldValues = (function () {
   var handleChange = function handleChange(event) {
     setTouched(true);
 
+    if (!event || !event.target) {
+      return;
+    }
+
     if (typeof event.target[attribute] === 'undefined') {
       throw new Error("[useFieldValue] attribute \"".concat(attribute, "\"  not present on target node"));
     }
@@ -223,11 +227,17 @@ var useFieldValues = (function () {
     return setValues(values);
   };
 
+  var assignValues = function assignValues(vals) {
+    var v = Object.assign({}, values, vals);
+    setValues(v);
+  };
+
   return {
     values: values,
     touched: touched,
     handleChange: handleChange,
     replaceValues: replaceValues,
+    assignValues: assignValues,
     inputProps: function inputProps(prop) {
       return _defineProperty({
         onChange: handleChange,
@@ -259,7 +269,8 @@ var useForm = (function (initialState, submitFn, validateFn) {
   var _useFieldValues = useFieldValues(initialState, prop),
       fields = _useFieldValues.values,
       handleFieldChange = _useFieldValues.handleChange,
-      inputProps = _useFieldValues.inputProps;
+      inputProps = _useFieldValues.inputProps,
+      assignValues = _useFieldValues.assignValues;
 
   var _useFieldValidator = useFieldValidator(initialState, validateFn),
       formValid = _useFieldValidator.formValid,
@@ -316,6 +327,7 @@ var useForm = (function (initialState, submitFn, validateFn) {
   }, []);
   return {
     fields: fields,
+    assignValues: assignValues,
     inputProps: inputProps,
     setDebug: setDebug,
     validator: validationStatus,

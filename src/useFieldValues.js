@@ -5,6 +5,10 @@ export default (initialState = {}, attribute = 'name') => {
   const [touched,setTouched] = useState(false);
   const handleChange =(event) => {
     setTouched(true);
+
+    if (!event || !event.target){
+      return ;
+    }
     if (typeof (event.target[attribute]) === 'undefined') {
       throw new Error(`[useFieldValue] attribute "${attribute}"  not present on target node`)
     }
@@ -17,12 +21,19 @@ export default (initialState = {}, attribute = 'name') => {
   }
 
   const replaceValues =(values) => setValues(values)
+  const assignValues =(vals) =>
+  { 
+    let v = Object.assign({},values,vals);
+    setValues(v)
+  }
 
   return {
     values,
     touched,
     handleChange,
     replaceValues,
+    assignValues,
+    
     inputProps: prop => ({
       onChange: handleChange,
       value: values[prop],

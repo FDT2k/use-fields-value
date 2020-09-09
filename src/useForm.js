@@ -9,7 +9,7 @@ export default (initialState,submitFn,validateFn,prop='name',dbg) => {
   const [formTouched,setFormTouched] = useState(false)
 
   const [shouldSubmit,setShouldSubmit] = useState(false);
-  const {values: fields, handleChange : handleFieldChange,inputProps} = useFieldValues(initialState,prop);
+  const {values: fields, handleChange : handleFieldChange,inputProps,assignValues} = useFieldValues(initialState,prop);
 
   const {formValid,validationStatus,handleValidation,setTouched,setDebug:setValidatorDebug} = useFieldValidator(initialState,validateFn)
 
@@ -68,6 +68,7 @@ export default (initialState,submitFn,validateFn,prop='name',dbg) => {
 
   return {
     fields,
+    assignValues,
     inputProps,
     setDebug,
     validator:validationStatus,
