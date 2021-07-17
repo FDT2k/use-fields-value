@@ -1,31 +1,10 @@
-import  useMyHook  from './'
+import {useFieldValues}  from './'
 import { renderHook, act } from "@testing-library/react-hooks";
 
-describe('useMyHook', () => {
- /* it('updates every second', () => {
-    const { result } = renderHook(() => useMyHook());
-
-    expect(result.current).toBe(0);
-
-    // Fast-forward 1sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
-
-    // Check after total 1 sec
-    expect(result.current).toBe(1);
-
-    // Fast-forward 1 more sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
-
-    // Check after total 2 sec
-    expect(result.current).toBe(2);
-  })*/
+describe('useFieldValues', () => {
 
   it('render',  ()=>{
-    const { result } = renderHook(() => useMyHook());
+    const { result } = renderHook(() => useFieldValues());
 
     expect (result.current.values).toEqual({})
 
@@ -38,9 +17,15 @@ describe('useMyHook', () => {
     act(() => {
       const state = result.current.handleChange({target:{name:'name',value:'newvalue'}})
     });
+
     expect (result.current.values).toEqual({name:'newvalue'})
 
-    expect(()=>result.current.handleChange({target:{value:'newvalue'}})).toThrow(Error)
+    act(() => {
+
+        const test = ()=>result.current.handleChange({target:{value:'newvalue'}});
+
+        expect(test).toThrow(Error);
+    });
 
 
     expect(result.current.inputProps('name').value).toBe('newvalue')

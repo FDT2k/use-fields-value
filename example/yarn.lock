@@ -1307,6 +1307,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
+"@karsegard/react-hooks@link:..":
+  version "0.0.0"
+  uid ""
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "http://192.168.64.135:4873/@mrmlnc%2freaddir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -10152,10 +10156,6 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
-
-"use-fields-value@link:..":
-  version "0.0.0"
-  uid ""
 
 use@^3.1.0:
   version "3.1.1"

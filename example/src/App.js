@@ -1,5 +1,5 @@
 import React from 'react'
-import useFieldsValue  from '@geekagency/use-fields-value'
+import {useFieldsValue}  from '@karsegard/react-hooks'
 
 const App = () => {
   const {values, inputProps,handleChange} = useFieldsValue({field:'hello world'})

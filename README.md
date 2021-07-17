@@ -17,7 +17,3 @@ npm install --save use-fields-value
 ## License
 
 MIT © [FDT2k](https://github.com/FDT2k)
-
----
-
-This hook is created using [create-react-hook](https://github.com/hermanya/create-react-hook).

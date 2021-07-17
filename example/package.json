@@ -9,7 +9,7 @@
     "react": "link:../node_modules/react",
     "react-dom": "^16.9.0",
     "react-scripts": "^3.0.1",
-    "use-fields-value": "link:.."
+    "@karsegard/react-hooks": "link:.."
   },
   "scripts": {
     "start": "react-scripts start",

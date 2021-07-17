@@ -2,34 +2,20 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var react = require('react');
-var react__default = _interopDefault(react);
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
 
 function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
 
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
+
+    if (enumerableOnly) {
+      symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+    }
+
     keys.push.apply(keys, symbols);
   }
 
@@ -56,6 +42,21 @@ function _objectSpread2(target) {
   return target;
 }
 
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -65,14 +66,17 @@ function _arrayWithHoles(arr) {
 }
 
 function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+  if (_i == null) return;
   var _arr = [];
   var _n = true;
   var _d = false;
-  var _e = undefined;
+
+  var _s, _e;
 
   try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
       _arr.push(_s.value);
 
       if (i && _arr.length === i) break;
@@ -143,7 +147,7 @@ var useFieldValidator = (function (initialState, validateFn) {
     Object.keys(fieldValues).map(function (field) {
       var value = fieldValues[field]; // current value
 
-      var initialValue = initialState[field]; // initial Value
+      initialState[field]; // initial Value
       // has the field been touched ? initially false .
 
       var touched = typeof validationStatus[field] === 'undefined' ? false : validationStatus[field].touched; // is field valid. ?
@@ -257,9 +261,9 @@ var useForm = (function (initialState, submitFn, validateFn) {
       setDebug = _useState2[1];
 
   var _useState3 = react.useState(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      formTouched = _useState4[0],
-      setFormTouched = _useState4[1];
+      _useState4 = _slicedToArray(_useState3, 2);
+      _useState4[0];
+      var setFormTouched = _useState4[1];
 
   var _useState5 = react.useState(false),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -300,7 +304,7 @@ var useForm = (function (initialState, submitFn, validateFn) {
     debug && console.log('[FORM_EVENT]', event.type, event.target[prop]);
 
     if (event.type === 'input') {
-      var newState = handleFieldChange(event); //    handleValidation(newState)
+      handleFieldChange(event); //    handleValidation(newState)
     }
 
     if (event.type === 'blur') {
@@ -347,4 +351,3 @@ var useForm = (function (initialState, submitFn, validateFn) {
 exports.useFieldValidator = useFieldValidator;
 exports.useFieldValues = useFieldValues;
 exports.useForm = useForm;
-//# sourceMappingURL=index.js.map
